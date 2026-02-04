@@ -44,6 +44,12 @@ cmake_ninja_workdir = /root/projects/c/campere/build/
 
 build cmake_object_order_depends_target_campere: phony || .
 
+build CMakeFiles/campere.dir/src/lexer/lexer.c.o: C_COMPILER__campere_unscanned_ /root/projects/c/campere/src/lexer/lexer.c || cmake_object_order_depends_target_campere
+  DEP_FILE = CMakeFiles/campere.dir/src/lexer/lexer.c.o.d
+  INCLUDES = -I/root/projects/c/campere/include
+  OBJECT_DIR = CMakeFiles/campere.dir
+  OBJECT_FILE_DIR = CMakeFiles/campere.dir/src/lexer
+
 build CMakeFiles/campere.dir/src/main.c.o: C_COMPILER__campere_unscanned_ /root/projects/c/campere/src/main.c || cmake_object_order_depends_target_campere
   DEP_FILE = CMakeFiles/campere.dir/src/main.c.o.d
   INCLUDES = -I/root/projects/c/campere/include
@@ -58,7 +64,7 @@ build CMakeFiles/campere.dir/src/main.c.o: C_COMPILER__campere_unscanned_ /root/
 #############################################
 # Link the executable campere
 
-build campere: C_EXECUTABLE_LINKER__campere_ CMakeFiles/campere.dir/src/main.c.o
+build campere: C_EXECUTABLE_LINKER__campere_ CMakeFiles/campere.dir/src/lexer/lexer.c.o CMakeFiles/campere.dir/src/main.c.o
   DEP_FILE = CMakeFiles/campere.dir/link.d
   LINK_FLAGS = -Wl,--dependency-file=CMakeFiles/campere.dir/link.d
   OBJECT_DIR = CMakeFiles/campere.dir

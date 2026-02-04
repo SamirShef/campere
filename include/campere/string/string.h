@@ -8,7 +8,7 @@ typedef struct {
     size_t capacity;
 } String;
 
-String *
+static inline String *
 strNew(const char *s) {
     size_t len = strlen(s);
     size_t capacity = len < 8 ? 8 : len * 2;
@@ -19,7 +19,7 @@ strNew(const char *s) {
     return res;
 }
 
-void
+static inline void
 strConcat(String *s1, String *s2) {
     size_t len = s1->len + s2->len;
     if (len > s1->capacity) {
@@ -31,7 +31,7 @@ strConcat(String *s1, String *s2) {
     s1->len = len;
 }
 
-void
+static inline void
 strDel(String *s) {
     free(s->data);
     free(s);
