@@ -1,0 +1,38 @@
+#include <stddef.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct {
+    char *data;
+    size_t len;
+    size_t capacity;
+} String;
+
+String *
+strNew(const char *s) {
+    size_t len = strlen(s);
+    size_t capacity = len < 8 ? 8 : len * 2;
+    String *res = (String *)malloc(sizeof(String));
+    res->data = strdup(s);
+    res->len = len;
+    res->capacity = capacity;
+    return res;
+}
+
+void
+strConcat(String *s1, String *s2) {
+    size_t len = s1->len + s2->len;
+    if (len > s1->capacity) {
+        s1->capacity *= 2;
+    }
+    s1->data = len < s1->capacity ? s1->data :
+               (char *)realloc(s1->data, s1->capacity);
+    s1->data = strcat(strdup(s1->data), strdup(s2->data));
+    s1->len = len;
+}
+
+void
+strDel(String *s) {
+    free(s->data);
+    free(s);
+}
