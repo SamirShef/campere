@@ -32,6 +32,31 @@ strConcat(String *s1, String *s2) {
 }
 
 static inline void
+strConcatS(String *s1, const char *s2) {
+    size_t len = s1->len + strlen(s2);
+    if (len > s1->capacity) {
+        s1->capacity *= 2;
+    }
+    s1->data = len < s1->capacity ? s1->data :
+               (char *)realloc(s1->data, s1->capacity);
+    s1->data = strcat(strdup(s1->data), strdup(s2));
+    s1->len = len;
+}
+
+static inline void
+strConcatC(String *s1, char c) {
+    size_t len = s1->len + 1;
+    if (len > s1->capacity) {
+        s1->capacity *= 2;
+    }
+    s1->data = len < s1->capacity ? s1->data :
+               (char *)realloc(s1->data, s1->capacity);
+    char s2[2] = { c, '\0' };
+    s1->data = strcat(strdup(s1->data), s2);
+    s1->len = len;
+}
+
+static inline void
 strDel(String *s) {
     free(s->data);
     free(s);
