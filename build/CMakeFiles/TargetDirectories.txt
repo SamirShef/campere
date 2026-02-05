@@ -1,3 +1,0 @@
-/root/projects/c/campere/build/CMakeFiles/campere.dir
-/root/projects/c/campere/build/CMakeFiles/edit_cache.dir
-/root/projects/c/campere/build/CMakeFiles/rebuild_cache.dir
