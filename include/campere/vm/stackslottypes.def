@@ -1,0 +1,7 @@
+SSType(SSChar)
+SSType(SSShort)
+SSType(SSInt)
+SSType(SSLong)
+SSType(SSFloat)
+SSType(SSDouble)
+SSType(SSString)

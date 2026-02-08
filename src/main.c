@@ -1,3 +1,6 @@
+#include "campere/vm/chunk.h"
+#include <campere/vm/vm.h>
+#include <campere/vm/bytecode.h>
 #include <campere/lexer/lexer.h>
 #include <stdio.h>
 
@@ -18,6 +21,17 @@ main(int argc, char **argv) {
                                       t.pos.line, t.pos.col);
     }
     strDel(s);
+
+    VM *vm = vmNew();
+    Chunk *c = chunkNew();
+    vmEmitPushConst(c, vmPushConst(vm, ssNew((StackSlot) { .data.i = 2, .type = SSFloat })));
+    vmEmitPushConst(c, vmPushConst(vm, ssNew((StackSlot) { .data.i = 3, .type = SSInt })));
+    chunkEmitByte(c, BcAdd);
+    chunkEmitByte(c, BcPrint);
+    chunkEmitByte(c, BcHalt);
+    vmAddChunk(vm, c);
+    run(vm);
+
     return 0;
 }
 

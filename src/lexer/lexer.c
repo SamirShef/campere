@@ -1,6 +1,6 @@
+#include <campere/error/error.h>
 #include <campere/lexer/lexer.h>
 #include <ctype.h>
-#include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -129,7 +129,7 @@ peek(Lexer *lex, unsigned int rpos) {
 
 const char
 skip(Lexer *lex) {
-    assert(lex->pos < lex->src->len + 1);
+    ERR(lex->pos < lex->src->len + 1, "Out of file");
     const char c = peek(lex, 0);
     ++lex->pos;
     ++lex->col;

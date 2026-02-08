@@ -1,3 +1,6 @@
+#ifndef STR_H
+#define STR_H
+
 #include <stddef.h>
 #include <string.h>
 #include <stdlib.h>
@@ -19,16 +22,18 @@ strNew(const char *s) {
     return res;
 }
 
-static inline void
+static inline String *
 strConcat(String *s1, String *s2) {
+    String *s = strNew(s1->data);
     size_t len = s1->len + s2->len;
     if (len > s1->capacity) {
         s1->capacity *= 2;
     }
-    s1->data = len < s1->capacity ? s1->data :
+    s->data = len < s1->capacity ? s1->data :
                (char *)realloc(s1->data, s1->capacity);
-    s1->data = strcat(strdup(s1->data), strdup(s2->data));
-    s1->len = len;
+    s->data = strcat(strdup(s1->data), strdup(s2->data));
+    s->len = len; 
+    return s;
 }
 
 static inline void
@@ -61,3 +66,5 @@ strDel(String *s) {
     free(s->data);
     free(s);
 }
+
+#endif

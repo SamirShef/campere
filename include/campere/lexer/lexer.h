@@ -1,3 +1,6 @@
+#ifndef LEXER_H
+#define LEXER_H
+
 #include "token.h"
 
 typedef enum {
@@ -33,3 +36,5 @@ lexTokenizeStr(Lexer *lex);
 
 Token
 lexTokenizeOp(Lexer *lex);
+
+#endif
